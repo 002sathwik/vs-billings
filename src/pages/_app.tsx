@@ -1,25 +1,33 @@
-import { GeistSans } from "geist/font/sans";
 import { type AppType } from "next/app";
-import {  Sora, Space_Grotesk } from 'next/font/google'
+import { Sora, Space_Grotesk } from 'next/font/google'
 
 import { api } from "~/utils/api";
-const grotesk =Space_Grotesk({
+const grotesk = Space_Grotesk({
   weight: ['700'],
   subsets: ['latin'],
   variable: '--font-grotesk',
 })
 
-const sora= Sora({
+const sora = Sora({
   weight: ['600'],
   subsets: ['latin'],
   variable: '--font-sora',
 })
 import "~/styles/globals.css";
+import { SidebarDemo } from "~/components/applayout";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <div className={`${grotesk.variable} ${sora.variable}`}>
-      <Component {...pageProps} />
+
+      <main>
+        <SidebarDemo>
+
+          <Component  {...pageProps} />
+        </SidebarDemo>
+      </main>
+
+
     </div>
   );
 };
