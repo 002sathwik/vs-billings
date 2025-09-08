@@ -1,8 +1,8 @@
 // BillCard.tsx
 interface BillCardProps {
-    customerName: string;
+    customerName: string ;
     price: number;
-    date: string;
+    date: Date;
 }
 
 const BillCard = ({ customerName, price, date }: BillCardProps) => {

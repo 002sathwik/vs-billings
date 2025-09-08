@@ -63,7 +63,7 @@ export const billRouter = createTRPCRouter({
 
     //delete bill 
     deleteBill: publicProcedure
-        .input(z.object({ id: z.string() }))
+        .input(z.object({ id: z.number() }))
         .mutation(async ({ ctx, input }) => {
             return await ctx.db.bill.delete({
                 where: {
@@ -84,7 +84,7 @@ export const billRouter = createTRPCRouter({
 
     //get bill by id
     getBillByid: publicProcedure
-        .input(z.object({ id: z.string() }))
+        .input(z.object({ id: z.number() }))
         .query(async ({ ctx, input }) => {
             return await ctx.db.bill.findUnique({
                 where: {
@@ -95,6 +95,8 @@ export const billRouter = createTRPCRouter({
                 }
             })
         })
+
+        
 });
 
 

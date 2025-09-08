@@ -13,7 +13,7 @@ const createBillInput = z.object({
     ),
 });
 const updateBills = z.object({
-    id: z.string(),
+    id: z.number(),
     customerName: z.string().min(1, "Customer name is required").optional(),
     date: z.date().optional(),
     totalAmount: z.number().min(0, "Total amount cannot be negative"),
@@ -28,3 +28,4 @@ const updateBills = z.object({
 
 
 export { createBillInput, updateBills };
+

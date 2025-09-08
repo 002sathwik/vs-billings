@@ -1,16 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/sidebar";
-import {
-  IconBrandTabler,
-  IconUserBolt,
-} from "@tabler/icons-react";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "~/lib/utils";
+import { CreditCard, LayoutDashboard } from "lucide-react";
 
 interface SidebarDemoProps {
-  children: React.ReactNode; // Typing the children prop correctly
+  children: React.ReactNode;
 }
 
 export function SidebarDemo({ children }: SidebarDemoProps) {
@@ -19,14 +17,7 @@ export function SidebarDemo({ children }: SidebarDemoProps) {
       label: "home",
       href: "/",
       icon: (
-        <IconBrandTabler className="text-white dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "bills",
-      href: "/bills",
-      icon: (
-        <IconUserBolt className="text-white dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <LayoutDashboard className="text-white dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
 
@@ -51,13 +42,13 @@ export function SidebarDemo({ children }: SidebarDemoProps) {
           </div>
         </SidebarBody>
       </Sidebar>
-     
-  <div className="flex-1 overflow-y-auto">
-    {/* Ensure children are scrollable with a defined height */}
-    <div className="h-full overflow-y-auto">
-      {children}
-    </div>
-  </div>
+
+      <div className="flex-1 overflow-y-auto">
+        {/* Ensure children are scrollable with a defined height */}
+        <div className="h-full overflow-y-auto">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }

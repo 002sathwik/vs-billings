@@ -12,18 +12,18 @@ datasource db {
 
 
 model Bill {
-  id          String     @id @default(cuid())
+  id           Int      @id @default(autoincrement())
   customerName String
-  date        DateTime   @default(now())
-  totalAmount Float
-  items       Item[]
+  date         DateTime
+  totalAmount  Float
+  items        Item[]
 }
 
 model Item {
-  id        String  @id @default(cuid())
-  billId    String
+  id        Int     @id @default(autoincrement())
   name      String
   quantity  Int
   price     Float
+  billId    Int
   bill      Bill    @relation(fields: [billId], references: [id])
 }

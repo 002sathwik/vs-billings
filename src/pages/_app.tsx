@@ -1,6 +1,6 @@
 import { type AppType } from "next/app";
 import { Sora, Space_Grotesk } from 'next/font/google'
-
+import toast, { Toaster } from 'react-hot-toast';
 import { api } from "~/utils/api";
 const grotesk = Space_Grotesk({
   weight: ['700'],
@@ -22,7 +22,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
       <main>
         <SidebarDemo>
-
+ <Toaster />
           <Component  {...pageProps} />
         </SidebarDemo>
       </main>
