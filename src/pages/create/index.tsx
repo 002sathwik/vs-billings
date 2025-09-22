@@ -188,8 +188,9 @@ const CreateBillPage = () => {
         }
     };
 
+    // Updated calculation - no multiplication, just sum the prices directly
     const calculateTotalAmount = useMemo(() => {
-        return formValues.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        return formValues.items.reduce((sum, item) => sum + (item.price || 0), 0);
     }, [formValues.items]);
 
     const validateForm = () => {
@@ -238,6 +239,8 @@ const CreateBillPage = () => {
             ...formValues,
             totalAmount: calculateTotalAmount,
         };
+        console.log("Submitting bill data:", billData);
+        console.log(calculateTotalAmount)
 
         try {
             await createNewBill.mutateAsync(billData);
@@ -435,11 +438,11 @@ const CreateBillPage = () => {
                                             <div>
                                                 <label className="block text-xs font-medium text-slate-600 mb-1 font-sora">
                                                     <DollarSign className="inline" size={12} />
-                                                    Price *
+                                                    Total Price *
                                                 </label>
                                                 <Input
                                                     type="number"
-                                                    placeholder="Price"
+                                                    placeholder="Total price for all items"
                                                     value={item.price || ''}
                                                     onChange={(e) => handleItemChange(index, "price", e.target.value)}
                                                     step="0.01"
@@ -458,9 +461,12 @@ const CreateBillPage = () => {
                                         </div>
                                         <div className="mt-3 text-right">
                                             <span className="text-sm text-slate-600 font-sora">
-                                                Subtotal:
+                                                Item Total:
                                                 <span className="font-semibold text-slate-800 ml-1">
-                                                    ₹{(item.price * item.quantity || 0).toFixed(2)}
+                                                    ₹{(item.price || 0).toFixed(2)}
+                                                </span>
+                                                <span className="text-xs text-slate-500 ml-2">
+                                                    ({item.quantity} {item.quantity === 1 ? 'unit' : 'units'})
                                                 </span>
                                             </span>
                                         </div>

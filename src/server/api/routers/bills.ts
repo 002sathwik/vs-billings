@@ -5,21 +5,17 @@ import { createBillInput, updateBills } from "~/zod/billsZ";
 
 export const billRouter = createTRPCRouter({
 
-    //create new bill 
     newBill: publicProcedure
         .input(createBillInput)
         .mutation(async ({ ctx, input }) => {
 
-            const totalAmount = input.items.reduce(
-                (sum, item) => sum + (item.price * (item.quantity ?? 1)),
-                0
-            );
+
 
             return await ctx.db.bill.create({
                 data: {
                     customerName: input.customerName,
                     date: input.date || new Date(),
-                    totalAmount: totalAmount,
+                    totalAmount: input.totalAmount,
                     items: {
                         create: (input.items ?? []).map(item => ({
                             name: item.name,
@@ -34,7 +30,6 @@ export const billRouter = createTRPCRouter({
         }),
 
     //update bills
-
     updatebBill: publicProcedure
         .input(updateBills)
         .mutation(async ({ ctx, input }) => {
@@ -61,6 +56,7 @@ export const billRouter = createTRPCRouter({
             })
         }),
 
+
     //delete bill 
     deleteBill: publicProcedure
         .input(z.object({ id: z.number() }))
@@ -82,6 +78,7 @@ export const billRouter = createTRPCRouter({
             })
         }),
 
+
     //get bill by id
     getBillByid: publicProcedure
         .input(z.object({ id: z.number() }))
@@ -96,7 +93,7 @@ export const billRouter = createTRPCRouter({
             })
         })
 
-        
+
 });
 
 
