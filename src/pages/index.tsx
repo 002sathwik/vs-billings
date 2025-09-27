@@ -271,7 +271,6 @@ const BillDetailDialog = ({ bill, isOpen, onClose }: BillDetailDialogProps) => {
                     <tr>
                       <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 font-sora">Description</th>
                       <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700 font-sora">Quantity</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700 font-sora">Unit Price</th>
                       <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700 font-sora">Total</th>
                     </tr>
                   </thead>
@@ -281,9 +280,6 @@ const BillDetailDialog = ({ bill, isOpen, onClose }: BillDetailDialogProps) => {
                         <td className="px-6 py-4 text-sm text-gray-900 font-sora font-medium">{item.name}</td>
                         <td className="px-6 py-4 text-sm text-gray-900 font-sora text-center">{item.quantity}</td>
                         <td className="px-6 py-4 text-sm text-gray-900 font-sora text-right">₹{item.price.toFixed(2)}</td>
-                        <td className="px-6 py-4 text-sm font-semibold text-gray-900 font-sora text-right">
-                          ₹{(item.price * item.quantity).toFixed(2)}
-                        </td>
                       </tr>
                     ))}
                   </tbody>

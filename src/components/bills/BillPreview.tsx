@@ -418,49 +418,37 @@ export default function BillPreview({ formValues, billCreated = false }: BillPre
                     </div>
 
                     {/* Payment Info and Signature */}
-                    <div className="flex justify-between items-end mt-12">
+                     <div className="flex justify-between items-start mt-12">
                         <div className="flex-1 max-w-md">
                             <div className="text-sm font-medium mb-3 text-gray-800">Payment info:</div>
-                            <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
-                                <div className="flex items-center gap-4">
-                                    <div className="flex-shrink-0">
-                                        <QRCodeComponent value={upiUrl} size={80} />
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="text-sm font-medium text-gray-800 mb-1">
-                                            Scan QR Code to Pay
-                                        </div>
-                                        <div className="text-lg font-semibold text-blue-600 mb-2">
-                                            ₹{calculateTotalAmount.toFixed(2)}
-                                        </div>
-                                    </div>
+                            <div className="flex items-start gap-4">
+                                <div className="flex-shrink-0">
+                                    <QRCodeComponent value={upiUrl} size={80} />
                                 </div>
-
-                                
-                                <div className="mt-4 pt-4 border-t border-gray-200">
-                                    <div className="text-sm font-medium text-gray-700 mb-2">Bank Details:</div>
-                                    <div className="space-y-1 text-sm text-gray-600">
-                                        <div className="flex justify-between">
-                                            <span className="font-medium">Bank:</span>
-                                            <span>Union Bank of India Ajekar</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span className="font-medium">A/c No:</span>
-                                            <span className="font-mono">560371000497103</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span className="font-medium">IFSC:</span>
-                                            <span className="font-mono">UBIN0900982</span>
-                                        </div>
+                                <div className="flex-1">
+                                    <div className="text-sm font-medium text-gray-800 mb-1">
+                                        Scan QR Code to Pay
+                                    </div>
+                                    <div className="text-lg font-semibold text-blue-600 mb-2">
+                                        ₹{calculateTotalAmount.toFixed(2)}
+                                    </div>
+                                    
+                                    {/* Simple Bank Details - No box */}
+                                    <div className="text-xs text-gray-600 space-y-1 mt-3">
+                                        <div>Bank: Union Bank of India Ajekar</div>
+                                        <div>A/c: <span className="font-mono">560371000497103</span></div>
+                                        <div>IFSC: <span className="font-mono">UBIN0900982</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="text-right ml-8 mt-28">
-                            <div className="w-32 border-b border-gray-800 mb-3"></div>
-                            <div className="text-sm font-medium">Vishnu Printers</div>
-                            <div className="text-xs text-gray-600 mt-1">Authorized Signature</div>
+                        <div className="text-right ml-8">
+                            <div className="mt-16">
+                                <div className="w-32 border-b border-gray-800 mb-2"></div>
+                                <div className="text-sm font-medium">Vishnu Printers</div>
+                                <div className="text-xs text-gray-600 mt-1">Authorized Signature</div>
+                            </div>
                         </div>
                     </div>
                 </div>
