@@ -103,7 +103,6 @@ const QRCodeComponent = ({ value, size = 100 }: QRCodeProps) => {
 export default function BillPreview({ formValues, billCreated = false }: BillPreviewProps) {
     const [invoiceNumber, setInvoiceNumber] = useState<string>('');
 
-    // Generate invoice number on client side to avoid hydration mismatch
     useEffect(() => {
         setInvoiceNumber(`INV-${Date.now().toString().slice(-6)}`);
     }, []);
@@ -310,8 +309,8 @@ export default function BillPreview({ formValues, billCreated = false }: BillPre
         }
     };
 
-    const upiUrl = `upi://pay?pa=vishnuprintersajekar@paytm&pn=Vishnu%20Printers&am=${calculateTotalAmount.toFixed(2)}&cu=INR&tn=Invoice%20${invoiceNumber}`;
-
+    // const upiUrl = `upi://pay?pa=vishnuprintersajekar@paytm&pn=Vishnu%20Printers&am=${calculateTotalAmount.toFixed(2)}&cu=INR&tn=Invoice%20${invoiceNumber}`;
+    const upiUrl = `upi://pay?pa=gpay-11209931560@okbizaxis&pn=Merchant&am=${calculateTotalAmount.toFixed(2)}&cu=INR&tn=Invoice%20${invoiceNumber}`;
     return (
         <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-gray-100">
             <div className="p-6">
@@ -341,7 +340,7 @@ export default function BillPreview({ formValues, billCreated = false }: BillPre
 
                 <div
                     id="bill-preview"
-                    className="max-w-2xl mx-auto bg-white p-8 mt-6"
+                    className="max-w-2xl mx-auto bg-white p-8 mt-6 font-sora"
                     style={{ fontFamily: 'Arial, sans-serif' }}
                 >
                     {/* Header */}
@@ -351,7 +350,7 @@ export default function BillPreview({ formValues, billCreated = false }: BillPre
                             <div className="text-sm text-gray-700 space-y-1">
                                 <div>+91 9845124879</div>
                                 <div>vishnuprintersajekar@gmail.com</div>
-                                <div>Milan, Ajekar - 574101</div>
+                                <div>Pragathi Ganesh Trade Center, Ajekar - 574101</div>
                             </div>
                         </div>
                         <div className="text-right">
@@ -361,13 +360,13 @@ export default function BillPreview({ formValues, billCreated = false }: BillPre
                             </div>
 
                             <div className="text-sm text-gray-600">
-                                Due date: {formattedDate}
+                                Issue date: {formattedDate}
                             </div>
                         </div>
                     </div>
 
                     {/* Simple line separator */}
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-600 font-sora">
                         Issued for: {formValues.customerName || "Customer Name"}
                     </div>
                     <div className="border-t border-gray-300 mb-6"></div>
@@ -433,6 +432,25 @@ export default function BillPreview({ formValues, billCreated = false }: BillPre
                                         </div>
                                         <div className="text-lg font-semibold text-blue-600 mb-2">
                                             ₹{calculateTotalAmount.toFixed(2)}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div className="mt-4 pt-4 border-t border-gray-200">
+                                    <div className="text-sm font-medium text-gray-700 mb-2">Bank Details:</div>
+                                    <div className="space-y-1 text-sm text-gray-600">
+                                        <div className="flex justify-between">
+                                            <span className="font-medium">Bank:</span>
+                                            <span>Union Bank of India Ajekar</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="font-medium">A/c No:</span>
+                                            <span className="font-mono">560371000497103</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="font-medium">IFSC:</span>
+                                            <span className="font-mono">UBIN0900982</span>
                                         </div>
                                     </div>
                                 </div>
