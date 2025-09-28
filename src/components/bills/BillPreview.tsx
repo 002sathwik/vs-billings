@@ -309,7 +309,6 @@ export default function BillPreview({ formValues, billCreated = false }: BillPre
         }
     };
 
-    // const upiUrl = `upi://pay?pa=vishnuprintersajekar@paytm&pn=Vishnu%20Printers&am=${calculateTotalAmount.toFixed(2)}&cu=INR&tn=Invoice%20${invoiceNumber}`;
     const upiUrl = `upi://pay?pa=gpay-11209931560@okbizaxis&pn=Merchant&am=${calculateTotalAmount.toFixed(2)}&cu=INR&tn=Invoice%20${invoiceNumber}`;
     return (
         <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-gray-100">
@@ -375,23 +374,21 @@ export default function BillPreview({ formValues, billCreated = false }: BillPre
                     <table className="w-full mb-8">
                         <thead>
                             <tr className="border-b border-gray-400">
+                                 <th className="text-left py-2 font-normal text-sm w-12">S.NO</th>
                                 <th className="text-left py-2 font-normal text-sm">DESCRIPTION</th>
                                 <th className="text-center py-2 font-normal text-sm w-16">QTY</th>
                                 <th className="text-center py-2 font-normal text-sm w-20">PRICE</th>
-                                <th className="text-right py-2 font-normal text-sm w-24">SUBTOTAL</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/* Render actual items */}
                             {formValues.items.map((item, idx) => (
                                 <tr key={idx} className="border-b border-gray-200">
+                                     <td className="py-3 text-sm">{idx + 1}</td>
                                     <td className="py-3 text-sm">{item.name || `Item ${idx + 1}`}</td>
                                     <td className="py-3 text-center text-sm">{item.quantity}</td>
                                     <td className="py-3 text-center text-sm">₹{(item.price || 0).toFixed(2)}</td>
-                                    <td className="py-3 text-right text-sm">₹{(item.price || 0).toFixed(2)}</td>
                                 </tr>
                             ))}
-                            {/* Fill remaining rows to make 6 total rows */}
                             {Array.from({ length: Math.max(0, 6 - formValues.items.length) }, (_, idx) => (
                                 <tr key={`empty-${idx}`} className="border-b border-gray-200">
                                     <td className="py-3 text-sm">&nbsp;</td>
